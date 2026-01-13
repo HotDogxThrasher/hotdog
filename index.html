@@ -66,6 +66,21 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.6);
     }
 
+    .lightbox .close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 28px; 
+      color: #fff;
+      cursor: pointer;
+      opacity: 0,7;
+      user-select: none;
+    }
+
+    .lightbox .close:hover {
+      opacity: 1;
+    }
+
     /*opisanije kartinki pvz.: Mosque in Tajikistan*/
     .lightbox .caption {
       position: absolute;
@@ -129,6 +144,7 @@
  </div>
 
 <div class="lightbox" id="lightbox">
+  <span class="close">&times;</span>
   <div class="nav prev">&lt;</div>
   <img id="lightbox-img">
   <div class="nav next">&gt;</div>
@@ -167,17 +183,9 @@
   document.querySelector('.next').onclick = () => showNext(1);
   document.querySelector('.prev').onclick = () => showNext(-1);
 
-  document.querySelectorAll('.nav').forEach(btn => {
-    btn.addEventListener('click', e => e.stopPropagation());
-  });
-
-  lightboxImg.addEventListener('click', e => e.stopPropagation());
-
-  lightbox.addEventListener('click', e => {
-    if (e.target === lightbox) {
-      lightbox.classList.remove('active');
-      document.body.classList.remove('lightbox-open');
-    }
+   document.querySelector('.close').addEventListener('click', () => {
+    lightbox.classList.remove('active');
+    document.body.classList.remove('lightbox-open');
   });
 </script>  
 
