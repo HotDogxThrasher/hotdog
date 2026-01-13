@@ -73,7 +73,7 @@
       font-size: 28px; 
       color: #fff;
       cursor: pointer;
-      opacity: 0,7;
+      opacity: 0.7;
       user-select: none;
     }
 
@@ -90,7 +90,7 @@
       max-width: 80%;
       color: #ddd;
       font-size: 14px;
-      text-allign: center;
+      text-align: center;
       line-height: 1.4;
       pointer-events: none;
     }
@@ -186,6 +186,18 @@
    document.querySelector('.close').addEventListener('click', () => {
     lightbox.classList.remove('active');
     document.body.classList.remove('lightbox-open');
+
+     document.querySelectorAll('.nav, .close').forEach(el => {
+  el.addEventListener('click', e => e.stopPropagation());
+  });
+
+     document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+    lightbox.classList.remove('active');
+    document.body.classList.remove('lightbox-open');
+  }
+  });
+
   });
 </script>  
 
